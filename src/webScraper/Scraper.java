@@ -37,9 +37,36 @@ public class Scraper {
 						String last = names[names.length - 1];
 						//gets rid of anchor around email so we just see the email
 						String email = info2[7].replace("</a", "");
-						String city = "";
-						String zip = "";
-						String state = "";
+						String city = " ";
+						String zip = " ";
+						String state = " ";
+						String homephone = " ";
+						String WorkPhone = " ";
+						String company = " ";
+						String[] hp = info2[10].split("\\s");
+						if (info2.length == 11) {
+							if (hp[1].equals("H.")) {
+								homephone = info2[10].replace("H.", "");
+							} else if (hp[1].equals("W.")) {
+								WorkPhone = info2[10].replace("W.", "");
+							}
+							else System.out.println();
+						}
+						else {
+							String[] hp2 = info2[12].split("\\s+");
+							if (hp[1].equals("H.")) {
+								homephone = info2[10].replace("H.", "");
+							} else if (hp[1].equals("W.")) {
+								WorkPhone = info2[10].replace("W.", "");
+							}
+							if (hp2[1].equals("H.")) {
+								homephone = info2[12].replace("H.", "");
+							}
+							else if (hp2[1].equals("W.")) {
+								WorkPhone = info2[12].replace("H.", "");
+							}
+						}
+						
 						//Stores if we do not have an address
 						boolean lenore = false;
 						//The next few lines discover if the current person has an address attached and changes their info to match otherwise sets their address correctly
@@ -60,16 +87,24 @@ public class Scraper {
 							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + ",");
 						}
 						else if(info2.length == 13){
-							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "").replace("W.", "") + ",");
+							if (homephone.equals(" ") && WorkPhone.equals(" ")) {
+								company = info2[10].replace(",", "");
+							}
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + homephone + "," + WorkPhone + "," + company + ",");
 						}
 						else if(info2.length == 15) {
-							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "").replace("W.", "") + "," + info2[12].replace(",", "").replace("W.", "") + ",");
+							if (homephone.equals(" ") || WorkPhone.equals(" ")) {
+								company = info2[12].replace(",", "");
+							}
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + homephone + "," + WorkPhone + "," + company + ",");
 						}
 						else if(info2.length == 11 && lenore) {
-							writer.write(first + "," + last + "," + email + "," + info2[8].replace(",", "").replace("W.", "") + ",");
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + homephone + "," + WorkPhone + "," + company + ",");
 						}
 						else if (info2.length == 17) {
-							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "").replace("W.", "") + "," + info2[12].replace(",", "").replace("W.", "") + "," + info2[14].replace(",", "").replace("W.", "") + ",");
+							company = info2[14].replace(",", "");
+							
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + homephone + "," + WorkPhone + "," + company + ",");
 						}
 						writer.write("\n");
 						//Here we have a count to make sure we don't do more then 1000 people even though in this instance their can only be 1000
