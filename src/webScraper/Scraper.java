@@ -49,7 +49,7 @@ public class Scraper {
 						}
 						else {
 							for (int i = 0; i < cities.length-2;i++) {
-								city += cities[i];
+								city += cities[i] + " ";
 							}
 							state = cities[cities.length-2];
 							zip = cities[cities.length-1];
@@ -60,17 +60,18 @@ public class Scraper {
 							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + ",");
 						}
 						else if(info2.length == 13){
-							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "") + ",");
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "").replace("W.", "") + ",");
 						}
 						else if(info2.length == 15) {
-							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "") + "," + info2[12].replace(",", "") + ",");
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "").replace("W.", "") + "," + info2[12].replace(",", "").replace("W.", "") + ",");
 						}
 						else if(info2.length == 11 && lenore) {
-							writer.write(first + "," + last + "," + email + "," + info2[8].replace(",", "") + ",");
+							writer.write(first + "," + last + "," + email + "," + info2[8].replace(",", "").replace("W.", "") + ",");
 						}
 						else if (info2.length == 17) {
-							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "") + "," + info2[12].replace(",", "") + "," + info2[14].replace(",", "") + ",");
+							writer.write(first + "," + last + "," + city + "," + state + "," + zip + "," + email + "," + info2[10].replace(",", "").replace("W.", "") + "," + info2[12].replace(",", "").replace("W.", "") + "," + info2[14].replace(",", "").replace("W.", "") + ",");
 						}
+						writer.write("\n");
 						//Here we have a count to make sure we don't do more then 1000 people even though in this instance their can only be 1000
 						count++;
 						if (count >= 1000) {

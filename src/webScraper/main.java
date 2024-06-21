@@ -23,7 +23,7 @@ public class main{
 		Scraper crawl = new Scraper();
 		//lets webdriver use our chromedriver applications
 		//Change the second path to the path connecting to chromedriver on your device can be downloaded here https://googlechromelabs.github.io/chrome-for-testing/#stable
-		System.setProperty("webdriver.chrome.driver", "C:/Users/billy/Downloads/chromedriver-win32/chromedriver-win32/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:/Chromium/Chrome Driver/chromedriver-win64/chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		//lets us run chromeium in the background
 		options.addArguments("--headless");
