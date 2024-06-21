@@ -1,0 +1,4 @@
+This program is a webcrawler for the website https://portal.nosscr.org/iSamples/SharedContent/ContactManagement/Directory.aspx that scrapes the contact info of 1000 people off the site.
+To do this I needed to be able to press the show all button to be able to have all 1000 peoples contact info in visible in the html. To accomplish this I used chrome driver and the Selenium library.
+I also needed to parse through the html and use a for each loop to actually get everyones information which I would then put in a csv file. In order to accomplish this I used the library Jsoup.
+If you are having issues getting it working please look at comments in the code they should help you out. Also ignore all csv files except out as I was just messing with them and out.csv is the expected outcome.
